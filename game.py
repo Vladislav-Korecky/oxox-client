@@ -10,11 +10,15 @@ class Game:
                 self.board[y].append(0)
 
     def play(self):
-        for player in self.players:
-            player_input = input()
-            player_input = player_input.split(",")
+        while True:
+            for player in self.players:
+                for line in self.board:
+                    print(line)
 
-            for i in range(len(player_input)):
-                player_input[i] = int(player_input[i])
+                player_input = input()
+                player_input = player_input.split(",")
 
-            self.board[player_input[1]][player_input[0]] = player.player_num + 1
+                for i in range(len(player_input)):
+                    player_input[i] = int(player_input[i])
+
+                self.board[player_input[1]][player_input[0]] = player.player_num + 1
