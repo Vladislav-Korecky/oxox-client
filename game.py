@@ -1,10 +1,13 @@
 class Game:
-    def __init__(self, y_size, x_size, players):
+    def __init__(self, x_size, y_size, players):
         # init
         self.board = []
         self.players = players
 
         # creating board
+        self.reset_board(x_size, y_size)
+
+    def reset_board(self, x_size, y_size):
         for y in range(y_size):
             self.board.append([])
 
