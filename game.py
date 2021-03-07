@@ -10,23 +10,32 @@ class Game:
                 self.board[y].append(0)
 
     def play(self):
+        player_index = 0
+
         while True:
-            for player_index in range(len(self.players)):
-                for line in self.board:
-                    print(line)
+            for line in self.board:
+                print(line)
 
-                player_input = input()
-                player_input = player_input.split(",")
+            player_input = input()
+            player_input = player_input.split(",")
 
-                for i in range(len(player_input)):
-                    player_input[i] = int(player_input[i])
+            for i in range(len(player_input)):
+                player_input[i] = int(player_input[i])
 
+            if self.board[player_input[1]][player_input[0]] == 0:
                 self.board[player_input[1]][player_input[0]] = self.players[player_index].player_num
+            else:
+                continue
 
-                if self.is_win(player_input[0], player_input[1], player_index):
-                    return player_index
+            if self.__is_win(player_input[0], player_input[1], player_index):
+                return player_index
 
-    def is_win(self, x, y, player_index):
+            player_index += 1
+
+            if player_index == len(self.players):
+                player_index = 0
+
+    def __is_win(self, x, y, player_index):
         for i in range(4):
             vector = []
             x2, y2 = x, y
