@@ -9,7 +9,9 @@ class Game:
         # creating board
         self.reset_board()
 
-    def reset_board(self, ):
+    def reset_board(self):
+        self.board = []
+        
         for y in range(self.y_size):
             self.board.append([])
 
