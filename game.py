@@ -3,15 +3,17 @@ class Game:
         # init
         self.board = []
         self.players = players
+        self.x_size = x_size
+        self.y_size = y_size
 
         # creating board
-        self.reset_board(x_size, y_size)
+        self.reset_board()
 
-    def reset_board(self, x_size, y_size):
-        for y in range(y_size):
+    def reset_board(self, ):
+        for y in range(self.y_size):
             self.board.append([])
 
-            for x in range(x_size):
+            for x in range(self.x_size):
                 self.board[y].append(0)
 
     def play(self):
