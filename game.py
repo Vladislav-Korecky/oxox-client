@@ -1,14 +1,21 @@
 class Game:
-    def __init__(self, y_size, x_size, players):
+    def __init__(self, x_size, y_size, players):
         # init
         self.board = []
         self.players = players
+        self.x_size = x_size
+        self.y_size = y_size
 
         # creating board
-        for y in range(y_size):
+        self.reset_board()
+
+    def reset_board(self):
+        self.board = []
+        
+        for y in range(self.y_size):
             self.board.append([])
 
-            for x in range(x_size):
+            for x in range(self.x_size):
                 self.board[y].append(0)
 
     def play(self):
@@ -58,14 +65,8 @@ class Game:
 
             # checking tiles
             while True:
-                # changing player
-                player_index2 += 1
-
-                if player_index2 == len(self.players):
-                    player_index2 = 0
-
                 # checking if tile exists
-                if self.tile_exists(x2, y2):
+                if not self.tile_exists(x2, y2):
                     break
 
                 # checking if tile belongs to player
@@ -76,6 +77,12 @@ class Game:
                 x2 += vector[0]
                 y2 += vector[1]
 
+                # changing player
+                player_index2 += 1
+
+                if player_index2 == len(self.players):
+                    player_index2 = 0
+
             # checking direction in reverse for signs of winning combination
             for j in range(4):
                 # changing player
@@ -83,6 +90,10 @@ class Game:
 
                 if player_index2 == len(self.players):
                     player_index2 = 0
+
+                # changing tile
+                x2 -= vector[0]
+                y2 -= vector[1]
 
                 # checking if tile exists
                 if not self.tile_exists(x2, y2):
@@ -95,10 +106,6 @@ class Game:
                 # checking for end of pattern
                 if j == 3:
                     return True
-
-                # changing tile
-                x2 -= vector[0]
-                y2 -= vector[1]
 
         return False
 
