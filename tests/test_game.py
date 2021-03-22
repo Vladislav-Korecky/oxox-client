@@ -130,3 +130,11 @@ class TestGame(unittest.TestCase):
         for board_data in test:
             self.gc.board = board_data["board"]
             self.assertEqual(self.gc.is_win(board_data["x"], board_data["y"], board_data["player_index"]), board_data["result"])
+
+    def test_tile_exists(self):
+        self.assertEqual(self.gc.tile_exists(0, 0), True)
+        self.assertEqual(self.gc.tile_exists(5, 0), True)
+        self.assertEqual(self.gc.tile_exists(5, 5), True)
+        self.assertEqual(self.gc.tile_exists(-1, -2), False)
+        self.assertEqual(self.gc.tile_exists(2, -2), False)
+        self.assertEqual(self.gc.tile_exists(6, 6), False)
