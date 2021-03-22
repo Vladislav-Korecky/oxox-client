@@ -8,6 +8,7 @@ class TestGame(unittest.TestCase):
         self.gc = Game(6, 6, [Player(1), Player(2)])
 
     def test_reset_board(self):
+        self.gc.board = [[1, 2, 8, -1, 3, 0]] * 6
         self.gc.reset_board()
         self.assertEqual(self.gc.board, [[0, 0, 0, 0, 0, 0]] * 6)
 
