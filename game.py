@@ -65,14 +65,8 @@ class Game:
 
             # checking tiles
             while True:
-                # changing player
-                player_index2 += 1
-
-                if player_index2 == len(self.players):
-                    player_index2 = 0
-
                 # checking if tile exists
-                if self.tile_exists(x2, y2):
+                if not self.tile_exists(x2, y2):
                     break
 
                 # checking if tile belongs to player
@@ -83,6 +77,12 @@ class Game:
                 x2 += vector[0]
                 y2 += vector[1]
 
+                # changing player
+                player_index2 += 1
+
+                if player_index2 == len(self.players):
+                    player_index2 = 0
+
             # checking direction in reverse for signs of winning combination
             for j in range(4):
                 # changing player
@@ -90,6 +90,10 @@ class Game:
 
                 if player_index2 == len(self.players):
                     player_index2 = 0
+
+                # changing tile
+                x2 -= vector[0]
+                y2 -= vector[1]
 
                 # checking if tile exists
                 if not self.tile_exists(x2, y2):
@@ -102,10 +106,6 @@ class Game:
                 # checking for end of pattern
                 if j == 3:
                     return True
-
-                # changing tile
-                x2 -= vector[0]
-                y2 -= vector[1]
 
         return False
 
