@@ -110,8 +110,19 @@ class Game:
         return False
 
     def print_board(self):
+        s = ""
         for line in self.board:
-            print(line)
+            s += "|"
+            for character in line:
+                if character == 0:
+                    s += "- "
+                elif character == 1:
+                    s += "x "
+                else:
+                    s += "o "
+            s += "|\n"
+        print(s)
+
 
     def get_input(self):
         player_input = input().split(",")
