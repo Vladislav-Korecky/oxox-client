@@ -1,3 +1,16 @@
-#:kivy 2.0.0
-
 <BaseLayout>:
+    orientation: "vertical"
+    size: root.width, root.height
+
+<BoardButton>:
+    background_normal: ""
+    background_color: (0, 0, 0, 0)
+    size_hint: (None, None)
+    size: (75, 75)
+
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 1)
+        Line:
+            width: 2
+            rectangle: self.x, self.y, self.width, self.height
